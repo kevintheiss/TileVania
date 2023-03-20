@@ -6,12 +6,15 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
+
     Vector2 moveInput;
     Rigidbody2D playerRigidBody;
+    Animator playerAnimator;
 
     void Start()
     {
-        playerRigidBody = GetComponent<Rigidbody2D>();    
+        playerRigidBody = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -28,14 +31,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Run()
     {
+        bool isRunning = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = playerVelocity;
+
+        if (isRunning)
+        {
+            playerAnimator.SetBool("isRunning", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isRunning", false);
+        }
     }
     void FlipSprite()
     {
-        bool playerMovingHorizontal = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
+        bool isMovingHorizontal = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
 
-        if (playerMovingHorizontal)
+        if (isMovingHorizontal)
         {
             transform.localScale = new Vector2(Mathf.Sign(playerRigidBody.velocity.x), 1f);
         }
