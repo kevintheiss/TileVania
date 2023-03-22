@@ -16025,6 +16025,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.06352937
       objectReference: {fileID: 0}
+    - target: {fileID: 1307867324, guid: e135be875d2e1aa4eb70554f485f941e, type: 3}
+      propertyPath: deathKick.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307867324, guid: e135be875d2e1aa4eb70554f485f941e, type: 3}
+      propertyPath: deathKick.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 580353342574336019, guid: e135be875d2e1aa4eb70554f485f941e, type: 3}
       propertyPath: m_RootOrder
       value: 2
