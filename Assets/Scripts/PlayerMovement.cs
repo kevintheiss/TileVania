@@ -9,12 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] Vector2 deathKick = new Vector2(10f, 10f);
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform gun;
 
     Vector2 moveInput;
     Rigidbody2D playerRigidBody;
     Animator playerAnimator;
     CapsuleCollider2D playerBodyCollider;
     BoxCollider2D playerFeetCollider;
+
     float startingGravityScale;
     bool isAlive = true;
 
@@ -64,6 +67,14 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRigidBody.velocity += new Vector2(0f, jumpSpeed);
             //Debug.Log(jumpSpeed);
+        }
+    }
+
+    void OnFire(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            Instantiate(bullet, gun.position, transform.rotation);
         }
     }
 
